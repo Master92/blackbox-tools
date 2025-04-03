@@ -39,7 +39,7 @@ jobs:
 
       - name: Install dependencies (Windows)
         if: matrix.os == 'windows-latest'
-        shell: msys2
+        shell: msys2 {0}
         run: |
           pacman -S --noconfirm --needed base-devel mingw-w64-x86_64-freetype mingw-w64-x86_64-cairo mingw-w64-x86_64-gcc
 
@@ -49,7 +49,7 @@ jobs:
 
       - name: Build the tools (Windows)
         if: matrix.os == 'windows-latest'
-        shell: msys2
+        shell: msys2 {0}
         run: make all
 
       - name: Publish build artifacts
