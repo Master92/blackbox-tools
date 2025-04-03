@@ -36,12 +36,13 @@ jobs:
       - name: Install msys2 (Windows)
         if: matrix.os == 'windows-latest'
         uses: msys2/setup-msys2@v2
-
-      - name: Install dependencies (Windows)
-        if: matrix.os == 'windows-latest'
-        shell: msys2 {0}
-        run: |
-          pacman -S --noconfirm --needed base-devel pkg-config mingw-w64-x86_64-freetype mingw-w64-x86_64-cairo mingw-w64-x86_64-gcc
+        with:
+          install: >-
+            base-devel
+            pkg-config
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-freetype
+            mingw-w64-x86_64-cairo
 
       - name: Build the tools
         if: matrix.os != 'windows-latest'
